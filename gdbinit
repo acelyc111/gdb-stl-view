@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-#    2                                                                                  
-=======
-#     1                                                                                 
->>>>>>> refs/remotes/origin/master
+#    2                                                                                                                                                               
 #   STL GDB evaluators/views/utilities - 1.03
 #
 #   The new GDB commands:                                                         
