@@ -50,6 +50,13 @@ define pspvector
 		set $capacity = $arg0._M_impl._M_end_of_storage - $arg0._M_impl._M_start
 		set $size_max = $size - 1
 	end
+	if $argc > 0
+		printf "Vector size = %u\n", $size
+		printf "Vector capacity = %u\n", $capacity
+		printf "Element "
+		whatis $arg0._M_impl._M_start
+	end
+
 	if $argc == 2
 		set $i = 0
 		while $i < $size
@@ -85,12 +92,6 @@ define pspvector
 			set $i++
 		end
 	  end
-	end
-	if $argc > 0
-		printf "Vector size = %u\n", $size
-		printf "Vector capacity = %u\n", $capacity
-		printf "Element "
-		whatis $arg0._M_impl._M_start
 	end
 end
 
@@ -116,6 +117,13 @@ define ppvector
 		set $capacity = $arg0._M_impl._M_end_of_storage - $arg0._M_impl._M_start
 		set $size_max = $size - 1
 	end
+	if $argc > 0
+		printf "Vector size = %u\n", $size
+		printf "Vector capacity = %u\n", $capacity
+		printf "Element "
+		whatis $arg0._M_impl._M_start
+	end
+
 	if $argc == 2
 		set $i = 0
 		while $i < $size
@@ -152,12 +160,6 @@ define ppvector
 		end
 	  end
 	end
-	if $argc > 0
-		printf "Vector size = %u\n", $size
-		printf "Vector capacity = %u\n", $capacity
-		printf "Element "
-		whatis $arg0._M_impl._M_start
-	end
 end
 
 document ppvector
@@ -178,6 +180,13 @@ define pvector
 		set $capacity = $arg0._M_impl._M_end_of_storage - $arg0._M_impl._M_start
 		set $size_max = $size - 1
 	end
+	if $argc > 0
+		printf "Vector size = %u\n", $size
+		printf "Vector capacity = %u\n", $capacity
+		printf "Element "
+		whatis $arg0._M_impl._M_start
+	end
+
 	if $argc == 1
 		set $i = 0
 		while $i < $size
@@ -213,12 +222,6 @@ define pvector
 			set $i++
 		end
 	  end
-	end
-	if $argc > 0
-		printf "Vector size = %u\n", $size
-		printf "Vector capacity = %u\n", $capacity
-		printf "Element "
-		whatis $arg0._M_impl._M_start
 	end
 end
 
@@ -327,6 +330,8 @@ define pmap
 		set $node = $tree._M_t._M_impl._M_header._M_left
 		set $end = $tree._M_t._M_impl._M_header
 		set $tree_size = $tree._M_t._M_impl._M_node_count
+		printf "Map size = %u\n", $tree_size
+
 		if $argc == 1
 			printf "Map "
 			whatis $tree
@@ -424,7 +429,6 @@ define pmap
 			end
 			printf "Number of elements found = %u\n", $ElementsFound
 		end
-		printf "Map size = %u\n", $tree_size
 	end
 end
 
@@ -448,6 +452,7 @@ define pmap_member
 		set $node = $tree._M_t._M_impl._M_header._M_left
 		set $end = $tree._M_t._M_impl._M_header
 		set $tree_size = $tree._M_t._M_impl._M_node_count
+		printf "Map size = %u\n", $tree_size
 		if $argc == 1
 			printf "Map "
 			whatis $tree
@@ -511,7 +516,6 @@ define pmap_member
 			end
 			printf "Number of elements found = %u\n", $ElementsFound
 		end
-		printf "Map size = %u\n", $tree_size
 	end
 end
 
@@ -537,6 +541,8 @@ define pset
 		set $node = $tree._M_t._M_impl._M_header._M_left
 		set $end = $tree._M_t._M_impl._M_header
 		set $tree_size = $tree._M_t._M_impl._M_node_count
+		printf "Set size = %u\n", $tree_size
+
 		if $argc == 1
 			printf "Set "
 			whatis $tree
@@ -618,7 +624,6 @@ define pset
 #			end
 #			printf "Number of elements found = %u\n", $ElementsFound
 #		end
-		printf "Set size = %u\n", $tree_size
 	end
 end
 
@@ -688,12 +693,13 @@ define pstack
 		set $start_cur = $arg0.c._M_impl._M_start._M_cur
 		set $finish_cur = $arg0.c._M_impl._M_finish._M_cur
 		set $size = $finish_cur - $start_cur
+		printf "Stack size = %u\n", $size
+
         set $i = $size - 1
         while $i >= 0
             p *($start_cur + $i)
             set $i--
         end
-		printf "Stack size = %u\n", $size
 	end
 end
 
@@ -718,12 +724,13 @@ define pqueue
 		set $start_cur = $arg0.c._M_impl._M_start._M_cur
 		set $finish_cur = $arg0.c._M_impl._M_finish._M_cur
 		set $size = $finish_cur - $start_cur
+		printf "Queue size = %u\n", $size
+
         set $i = 0
         while $i < $size
             p *($start_cur + $i)
             set $i++
         end
-		printf "Queue size = %u\n", $size
 	end
 end
 
@@ -747,13 +754,14 @@ define ppqueue
 	else
 		set $size = $arg0.c._M_impl._M_finish - $arg0.c._M_impl._M_start
 		set $capacity = $arg0.c._M_impl._M_end_of_storage - $arg0.c._M_impl._M_start
+		printf "Priority queue size = %u\n", $size
+		printf "Priority queue capacity = %u\n", $capacity
+
 		set $i = $size - 1
 		while $i >= 0
 			p *($arg0.c._M_impl._M_start + $i)
 			set $i--
 		end
-		printf "Priority queue size = %u\n", $size
-		printf "Priority queue capacity = %u\n", $capacity
 	end
 end
 
